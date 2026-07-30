@@ -44,28 +44,26 @@ const AR = {
 
 function StorySlide({ t, rtl=false }) {
   return <section className={rtl ? "rtl" : ""} data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
-    <div className="brand">{t.label}</div><div className="eyebrow">{t.eyebrow1}</div><h1>{t.title}</h1><p className="tagline">{t.tagline}</p>
+    <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow1}</div><h1>{t.title}</h1><p className="tagline">{t.tagline}</p>
     <div className="story-stage">
       <div className="story-box story-a fragment fade-in" data-fragment-index="0">“{t.quote1}”</div>
-      <div className="story-box story-b fragment zoom-in" data-fragment-index="1">“{t.quote2}”</div>
-      <div className="fragment" data-fragment-index="2">
-        <div className="story-box story-a split">“{t.quote1}”</div><div className="story-box story-b split">“{t.quote2}”</div><div className="vision">{t.vision}</div>
-      </div>
-      <p className="context-note fragment fade-up" data-fragment-index="3">{t.note}</p>
+      <div className="story-box story-b fragment fade-in" data-fragment-index="1">“{t.quote2}”</div>
+      <div className="vision-wrap fragment zoom-in" data-fragment-index="2"><div className="vision">{t.vision}</div></div>
     </div>
   </section>;
 }
 
-function Pillar({no,title,items,idx}) { return <article className={`pillar pillar-${idx} fragment fade-up`} data-fragment-index={idx-1}><div className="pillar-no">{String(no).padStart(2,"0")}</div><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>; }
+function Pillar({title,items,idx}) { return <article className={`pillar pillar-${idx} fragment fade-up`} data-fragment-index={idx-1}><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>; }
 function ModelSlide({t,rtl=false}) { return <section className={rtl?"rtl":""} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
-  <div className="brand">{t.label}</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.model}</h1><p className="pillars-intro">{t.intro}</p>
-  <div className="pillars-grid"><Pillar no={1} title={t.p1} items={t.items1} idx={1}/><Pillar no={2} title={t.p2} items={t.items2} idx={2}/><Pillar no={3} title={t.p3} items={t.items3} idx={3}/></div>
+  <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.model}</h1><p className="pillars-intro">{t.intro}</p>
+  <div className="pillars-grid"><Pillar title={t.p1} items={t.items1} idx={1}/><Pillar title={t.p2} items={t.items2} idx={2}/><Pillar title={t.p3} items={t.items3} idx={3}/></div>
 </section>; }
 function HubSlide({t,rtl=false}) { return <section className={rtl?"rtl":""} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)" data-transition="zoom">
-  <div className="brand">{t.label}</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.connected}</h1>
-  <div className="orbit-stage"><div className="fragment fade-in" data-fragment-index="0"><i className="orbit-line line-1"/><i className="orbit-line line-2"/><i className="orbit-line line-3"/></div>
-    {[t.p1,t.p2,t.p3].map((x,i)=><article key={x} className={`orbit-card oc-${i+1} fragment zoom-in`} data-fragment-index="0"><div className="pillar-no">0{i+1}</div><h3>{x}</h3></article>)}
-    <div className="hub fragment zoom-in" data-fragment-index="1">{t.hub}</div></div>
+  <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.connected}</h1>
+  <div className="orbit-stage">
+    <div className="radial-system fragment fade-in" data-fragment-index="0" aria-hidden="true"><span className="radial-ring"/><span className="radial-spoke spoke-top"/><span className="radial-spoke spoke-left"/><span className="radial-spoke spoke-right"/></div>
+    {[t.p1,t.p2,t.p3].map((x,i)=><article key={x} className={`orbit-card oc-${i+1} fragment zoom-in`} data-fragment-index="0"><h3>{x}</h3></article>)}
+    <div className="hub fragment zoom-in" data-fragment-index="1"><div className="hub-inner">{t.hub}</div></div></div>
 </section>; }
 
 function App(){
