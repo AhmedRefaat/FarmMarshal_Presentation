@@ -54,16 +54,28 @@ function StorySlide({ t, rtl=false }) {
 }
 
 function Pillar({title,items,idx}) { return <article className={`pillar pillar-${idx} fragment fade-up`} data-fragment-index={idx-1}><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>; }
-function ModelSlide({t,rtl=false}) { return <section className={rtl?"rtl":""} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
-  <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.model}</h1><p className="pillars-intro">{t.intro}</p>
-  <div className="pillars-grid"><Pillar title={t.p1} items={t.items1} idx={1}/><Pillar title={t.p2} items={t.items2} idx={2}/><Pillar title={t.p3} items={t.items3} idx={3}/></div>
-</section>; }
-function HubSlide({t,rtl=false}) { return <section className={rtl?"rtl":""} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)" data-transition="zoom">
+function ModelSlide({t,rtl=false}) {
+  const concise = rtl ? [
+    [t.p1,t.items1],
+    [t.p2,t.items2],
+    [t.p3,t.items3]
+  ] : [
+    ["Tech Team",["Customer-friendly web and mobile platform","Drone workflows, maps and data management","Machine learning, automation, alerts and reporting","Secure task tracking and expert marketplace"]],
+    ["Agricultural Partners · Expertise Everywhere",["Crop and greenhouse expertise","Pest, disease and irrigation guidance","Local treatments and agricultural validation","Standardized inspection protocols"]],
+    ["Drone and Sensor Operations",["Equipment, sensors and certified pilots","Flight missions and secure data capture","Data storage and archiving"]]
+  ];
+  return <section className={`${rtl?"rtl ":""}operating-model-auto-slide`} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
+    <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.model}</h1><p className="pillars-intro">{t.intro}</p>
+    <div className="pillars-grid">{concise.map(([title,items],i)=><article className={`pillar operating-pillar-auto operating-pillar-auto-${i+1}`} key={title}><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div>
+  </section>;
+}
+function HubSlide({t,rtl=false}) { return <section className={`${rtl?"rtl ":""}hub-attention-slide`} data-background-gradient="linear-gradient(135deg,#07130e,#10281d)" data-transition="zoom">
   <div className="brand">Farm Marshal</div><div className="eyebrow">{t.eyebrow2}</div><h1 className="small-title">{t.connected}</h1>
   <div className="orbit-stage">
-    <div className="radial-system fragment fade-in" data-fragment-index="0" aria-hidden="true"><span className="radial-ring"/><span className="radial-spoke spoke-top"/><span className="radial-spoke spoke-left"/><span className="radial-spoke spoke-right"/></div>
-    {[t.p1,t.p2,t.p3].map((x,i)=><article key={x} className={`orbit-card oc-${i+1} fragment zoom-in`} data-fragment-index="0"><h3>{x}</h3></article>)}
-    <div className="hub fragment zoom-in" data-fragment-index="1"><div className="hub-inner">{t.hub}</div></div></div>
+    <div className="radial-system radial-system-auto" aria-hidden="true"><span className="radial-ring"/><span className="radial-spoke spoke-top"/><span className="radial-spoke spoke-left"/><span className="radial-spoke spoke-right"/></div>
+    {[t.p1,t.p2,t.p3].map((x,i)=><article key={x} className={`orbit-card oc-${i+1} orbit-card-auto orbit-card-auto-${i+1}`}><h3>{x}</h3></article>)}
+    <div className="hub hub-auto"><span className="hub-target-ring hub-target-ring-one" aria-hidden="true"/><span className="hub-target-ring hub-target-ring-two" aria-hidden="true"/><span className="hub-target-dot hub-target-dot-one" aria-hidden="true"/><span className="hub-target-dot hub-target-dot-two" aria-hidden="true"/><div className="hub-inner">{t.hub}</div></div>
+  </div>
 </section>; }
 
 
@@ -73,102 +85,156 @@ function HubSlide({t,rtl=false}) { return <section className={rtl?"rtl":""} data
  * Added after the original English slides. Existing slides are unchanged.
  * -------------------------------------------------------------------------- */
 function VisionSlide() {
-  return <section data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+  return <section className="business-promise-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">The business promise</div>
-    <h1>Visibility. Accountability. Water Efficiency.</h1>
-    <div className="business-card business-hero fragment fade-up">
+    <h1>Visibility. Accountability. Resources Efficiency.</h1>
+    <div className="business-card business-hero promise-main-card">
       <div className="business-kicker">Data-as-a-Service for agricultural operations</div>
       <p>We do not sell drones. We provide trusted field evidence, expert supervision, and operational visibility across large agricultural estates.</p>
     </div>
-    <div className="value-strip">
-      <span>See the complete farm</span><span>Verify field execution</span><span>Protect water and yield</span>
+    <div className="value-strip value-strip-animated promise-lower-strip">
+      <span className="promise-item promise-item-1">Explore the entire farm</span>
+      <span className="promise-item promise-item-2">Verify field execution</span>
+      <span className="promise-item promise-item-3">Smarter Water Use, Stronger Yields</span>
+      <span className="promise-item promise-item-4">Detect disease risk early and act before it spreads</span>
     </div>
+  </section>;
+}
+
+function TeamIntroductionSlide() {
+  const members=[
+    {
+      initials:"AM",
+      name:"Ahmed Mohamed",
+      role:"BMW-Domain Project Manager",
+      highlights:["MBA in General Project Management","More than 15 years of professional experience","Multiple independent hobby projects"],
+      value:"Web app and mobile app, goal definition, delivery governance and business execution"
+    },
+    {
+      initials:"MZ",
+      name:"Muhammad Zainelddien",
+      role:"Manager at Apple",
+      highlights:["Management experience in a global technology environment","Operational and customer-focused perspective","Product and execution thinking"],
+      value:"Drone strategy, mission operations, equipment ecosystem and field-data acquisition"
+    },
+    {
+      initials:"HM",
+      name:"Hazem Mohy",
+      role:"Mechatronics Engineer",
+      highlights:["Strong practical engineering foundation","Machine learning and computer vision","Real-world systems and software integration"],
+      value:"Machine learning, computer vision, automation and software integration"
+    },
+    {
+      initials:"AH",
+      name:"Ahmed Hanfy, Ph.D.",
+      role:"Principal Semiconductor Engineer at Infineon",
+      highlights:["Ph.D. in Nanoelectronics, Technical University of Munich","Graduated summa cum laude","Molecular-device simulation, circuit modeling and semiconductor engineering"],
+      value:"China market analysis, market-entry strategy and business development"
+    }
+  ];
+  return <section className="team-auto-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+    <div className="brand">Farm Marshal</div>
+    <div className="eyebrow">The core team and agricultural network</div>
+    <h1 className="team-title">A broad capability set to build, operate and win the market</h1>
+    <p className="team-intro-lead">A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.</p>
+    <div className="team-grid team-grid-four">{members.map((member,i)=><article className={`team-card team-card-compact team-member-auto team-member-auto-${i+1}`} key={member.name}>
+      <div className="team-card-head"><span className="team-initials">{member.initials}</span><div><h3>{member.name}</h3><strong>{member.role}</strong></div></div>
+      <ul>{member.highlights.map(item=><li key={item}>{item}</li>)}</ul>
+      <div className="team-value"><small>Contribution to Farm Marshal</small><b>{member.value}</b></div>
+    </article>)}</div>
+    <div className="agriculture-network agriculture-network-auto"><div className="network-icon">+A</div><div><strong>Agricultural Experts and Academic Partners</strong><span>Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.</span></div></div>
+    <div className="team-bottomline team-market-line team-bottomline-auto"><b>One team, four core capabilities and Experts network:</b><span>Build the product</span><i>•</i><span>Operate the field-data ecosystem</span><i>•</i><span>Develop the intelligence</span><i>•</i><span>Enter, win and scale the market</span></div>
   </section>;
 }
 
 function ProblemSlide() {
   const problems = [
     ["01", "Limited visibility", "Remote owners cannot inspect every field, team, or work order."],
-    ["02", "Hidden water loss", "Irrigation failures may remain invisible until crop damage appears."],
+    ["02", "Hidden Water and Resource Loss", "Irrigation failures may remain invisible until crop damage appears."],
     ["03", "Execution risk", "Reports alone do not prove that the right work happened in the right area."],
-    ["04", "Fragmented expertise", "Advice, evidence, field work, and follow-up are rarely connected."]
+    ["04", "Disconnected Expertise", "Advice, evidence, field work, and follow-up are rarely connected."]
   ];
-  return <section data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
+  return <section className="problem-auto-slide" data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">Why now</div>
     <h1 className="small-title">The owner manages results, but cannot see the full operation</h1>
     <div className="problem-grid">
-      {problems.map(([no,title,text],i) => <article className="business-card problem-card fragment fade-up" data-fragment-index={i} key={no}>
+      {problems.map(([no,title,text],i) => <article className={`business-card problem-card problem-card-auto problem-card-auto-${i+1}`} key={no}>
         <span className="card-no">{no}</span><h3>{title}</h3><p>{text}</p>
       </article>)}
     </div>
-    <div className="business-bottomline">The cost is not only labor. It is late discovery, wasted inputs, weak accountability, and lost yield.</div>
+    <div className="business-bottomline problem-bottomline-auto">The cost is not only labor. It is late discovery, wasted inputs, weak accountability, and lost yield.</div>
   </section>;
 }
 
 function ReclamationSlide() {
-  const steps = ["Map the field", "Capture GPS evidence", "Compare progress", "Issue action report"];
-  return <section data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
+  const capabilities=[
+    ["01","Inspect at scale","Cover extensive reclamation areas through planned aerial missions instead of relying only on complete ground walkthroughs."],
+    ["02","Create a repeatable baseline","Map field boundaries, planting blocks, irrigation corridors and observation zones using consistent routes."],
+    ["03","Compare change over time","Repeat the same inspection pattern to reveal planted, delayed, dry, incomplete or suspicious areas."],
+    ["04","Focus people where needed","Convert broad-area visibility into prioritized GPS locations for targeted ground inspection and action."]
+  ];
+  return <section className="reclamation-sequence-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
     <div className="brand">Farm Marshal</div>
-    <div className="eyebrow">Use case 01</div>
-    <h1 className="small-title">Land reclamation progress verification</h1>
-    <p className="business-lead">Was the planned area planted, irrigated, and progressing according to plan?</p>
-    <div className="flow-row">
-      {steps.map((step,i) => <React.Fragment key={step}>
-        <div className="flow-step fragment fade-up" data-fragment-index={i}><b>{String(i+1).padStart(2,"0")}</b><span>{step}</span></div>
-        {i < steps.length-1 && <div className="flow-arrow">→</div>}
-      </React.Fragment>)}
+    <div className="eyebrow">Use case 01 · Reclamation at scale</div>
+    <h1 className="reclamation-title">Large reclamation areas become inspectable, comparable and actionable</h1>
+    <p className="reclamation-lead">The size of the project is no longer the main inspection constraint. Planned aerial coverage provides a consistent view across the estate, while field teams focus on the locations that require attention.</p>
+    <div className="reclamation-scale-stage">
+      <div className="scale-visual scale-gps-visual">
+        <div className="scale-rings"><span>PROJECT</span><span>SECTOR</span><span>ZONE</span><b>GPS</b></div>
+        <div className="scale-caption"><strong>Broad coverage</strong><span>From the complete project to the exact inspection point</span></div>
+      </div>
+      <div className="scale-capabilities">{capabilities.map(([no,title,text],i)=><article className={`scale-capability scale-capability-auto scale-capability-auto-${i+1}`} key={no}><b>{no}</b><div><strong>{title}</strong><span>{text}</span></div></article>)}</div>
     </div>
-    <div className="evidence-grid">
-      <div><strong>Evidence</strong><span>Geotagged photos and video</span></div>
-      <div><strong>Control</strong><span>Field boundaries and repeatable routes</span></div>
-      <div><strong>Output</strong><span>Progress map and prioritized actions</span></div>
+    <div className="reclamation-output-band reclamation-output-auto">
+      <div><small>Coverage</small><strong>Complete project overview</strong></div>
+      <i>→</i><div><small>Comparison</small><strong>Repeatable progress evidence</strong></div>
+      <i>→</i><div><small>Decision</small><strong>Prioritized field intervention</strong></div>
     </div>
-    <div className="highlight-box">Verify remotely that reclamation and planting work is progressing according to plan.</div>
+    <div className="reclamation-note">Aerial inspection expands visibility; qualified agricultural experts and field teams remain responsible for validation and action.</div>
   </section>;
 }
-
 function WaterSlide() {
-  return <section data-background-gradient="linear-gradient(135deg,#051611,#0d3327)">
+  return <section className="water-sequence-slide" data-background-gradient="linear-gradient(135deg,#051611,#0d3327)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">Use case 02 · The water card</div>
     <h1>Find water loss before it becomes crop loss</h1>
     <div className="water-layout">
-      <article className="business-card water-card fragment fade-right">
-        <span className="water-symbol">≈</span><h3>Detect abnormal zones</h3>
+      <article className="business-card water-card water-auto water-auto-left">
+        <span className="water-symbol">!</span><h3>Detect abnormal zones</h3>
         <ul><li>Blocked or low-pressure lines</li><li>Leakage and standing water</li><li>Over-irrigation and dry zones</li><li>Uneven vegetation patterns</li></ul>
       </article>
-      <div className="water-route fragment fade-up">
+      <div className="water-route water-auto water-auto-center">
         <div>Drone / field evidence</div><span>↓</span><div>Zone comparison</div><span>↓</span><div>GPS inspection points</div>
       </div>
-      <article className="business-card water-card fragment fade-left">
+      <article className="business-card water-card water-auto water-auto-right">
         <span className="water-symbol">✓</span><h3>Direct the response</h3>
         <ul><li>Prioritized repair plan</li><li>Technician sent to exact coordinates</li><li>Before-and-after verification</li><li>Historical water-performance record</li></ul>
       </article>
     </div>
-    <div className="highlight-box water-highlight">Protect groundwater, operating cost, and yield with one evidence-driven workflow.</div>
+    <div className="highlight-box water-highlight water-auto water-auto-bottom">Protect groundwater, operating cost, and yield with one evidence-driven workflow.</div>
   </section>;
 }
 
 function TreatmentSlide() {
   const steps = ["Expert recommendation", "Trackable task", "Before evidence", "Treatment record", "After evidence", "Owner approval"];
-  return <section data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
+  return <section className="treatment-sequence-slide" data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">Use case 03</div>
-    <h1 className="small-title">Convert agricultural advice into verified field execution</h1>
-    <div className="treatment-flow">
-      {steps.map((step,i) => <div className="treatment-item fragment fade-up" data-fragment-index={i} key={step}>
+    <h1 className="small-title use-case-detail-title">Convert agricultural advice into verified field execution</h1>
+    <div className="treatment-flow treatment-flow-auto">
+      {steps.map((step,i) => <div className={`treatment-item treatment-step-auto treatment-step-auto-${i+1}`} key={step}>
         <span>{i+1}</span><strong>{step}</strong>{i < steps.length-1 && <i>→</i>}
       </div>)}
     </div>
-    <div className="treatment-proof">
+    <div className="treatment-proof treatment-proof-auto">
       <div><b>What?</b><span>Product and quantity</span></div>
       <div><b>Where?</b><span>GPS area and field label</span></div>
       <div><b>When?</b><span>Time-stamped evidence</span></div>
       <div><b>Result?</b><span>Follow-up inspection</span></div>
     </div>
-    <div className="highlight-box">The platform does not stop at a PDF recommendation. It tracks whether the work happened and whether it worked.</div>
+    <div className="highlight-box treatment-bottom-auto">The platform does not stop at a PDF recommendation. It tracks whether the work happened and whether it worked.</div>
   </section>;
 }
 
@@ -176,28 +242,29 @@ function MonitoringSlide() {
   const items = [
     ["Scheduled missions", "The same routes and observation points support consistent comparison."],
     ["Historical comparison", "New evidence is measured against previous inspections."],
-    ["Flag suspicious zones", "AI assists prioritization without replacing the agricultural expert."],
+    ["Flag suspicious zones", "Machine learning supports prioritization without replacing the agricultural expert."],
     ["Expert action", "Only relevant areas are reviewed and converted into follow-up cases."]
   ];
-  return <section data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+  return <section className="monitoring-sequence-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">Use case 04 · Continuous monitoring</div>
     <h1 className="small-title">Move from reactive diagnosis to early warning</h1>
-    <div className="monitoring-track">
-      {items.map(([title,text],i) => <article className="monitoring-node fragment zoom-in" data-fragment-index={i} key={title}>
+    <div className="monitoring-track monitoring-track-auto">
+      {items.map(([title,text],i) => <article className={`monitoring-node monitoring-node-auto monitoring-node-auto-${i+1}`} key={title}>
         <span>{i+1}</span><h3>{title}</h3><p>{text}</p>
       </article>)}
     </div>
-    <div className="subscription-strip"><b>Recurring service</b><span>Weekly or biweekly</span><span>Per field or hectare</span><span>Seasonal monitoring</span><span>Urgent expert review</span></div>
+    <div className="subscription-strip monitoring-bottom-auto"><b>Recurring service</b><span>Weekly or biweekly</span><span>Per field or hectare</span><span>Seasonal monitoring</span><span>Urgent expert review</span></div>
   </section>;
 }
+
 
 
 const PRODUCT_IMAGES = {
   webPortfolio: "/images/web-app-portfolio.png",
   webIncident: "/images/web-app-incident.png",
   webEvidence: "/images/web-app-evidence.png",
-  mobileHero: "/images/mobile-app-hero.png",
+  mobileHero: "/images/Best-Option%20-%20single%20slide%20App.jpeg",
   mobileArabic: "/images/mobile-app-arabic.png"
 };
 
@@ -210,54 +277,51 @@ function ProductVisual({src,alt,label,className=""}) {
 }
 
 function WebPlatformSlide() {
-  const capabilities=[
-    ["Portfolio visibility","All farms, greenhouses, project status, and active issues in one owner workspace."],
-    ["Project context","Navigation appears only after a farm is selected, preventing data confusion."],
-    ["Bilingual operation","English and Arabic interfaces with complete RTL behavior."],
-    ["Issue accounting","Reported, active, and solved cases remain visible at project level."]
+  const highlights=[
+    ["Your whole Land / Projects, in hand","See every farm, greenhouse and reclamation project from one owner workspace."],
+    ["Know what needs attention now","Active issues, project status and location are visible without travelling to the farm."],
+    ["Track performance, not reports","Reported, active and solved issues show what happened, what remains open and what was closed."],
+    ["Operate in Arabic or English","A bilingual owner experience keeps the same portfolio and status available in either language."]
   ];
-  return <section data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
-    <div className="brand">Farm Marshal</div><div className="eyebrow">Digital owner experience</div>
-    <h1 className="small-title">The web app is the owner’s operating command center</h1>
-    <div className="web-product-layout">
-      <ProductVisual src={PRODUCT_IMAGES.webPortfolio} alt="Farm Marshal owner portfolio web application" label="Owner portfolio · Web application" className="web-hero-visual"/>
-      <div className="capability-stack">{capabilities.map(([title,text],i)=><article className="capability-card fragment fade-left" data-fragment-index={i} key={title}><span>0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+  return <section className="owner-view-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+    <div className="brand">Farm Marshal</div><div className="eyebrow">Web application · Owner view</div>
+    <h1 className="small-title">One owner workspace for all farms and projects</h1>
+    <p className="portfolio-executive-lead">Wherever the owner is, the current status of every agricultural investment remains visible and actionable.</p>
+    <div className="portfolio-slide-layout portfolio-executive-layout">
+      <ProductVisual src={PRODUCT_IMAGES.webPortfolio} alt="Farm Marshal owner portfolio homepage" label="" className="portfolio-wide-visual portfolio-sharp-visual"/>
+      <div className="portfolio-highlights portfolio-highlights-four">{highlights.map(([title,text],i)=><article className={`portfolio-highlight executive-highlight owner-card owner-card-${i+1}`} key={title}><b>{String(i+1).padStart(2,"0")}</b><div><strong>{title}</strong><span>{text}</span></div></article>)}</div>
     </div>
-    <div className="product-caption">One portfolio → one selected project → one traceable operational workflow.</div>
   </section>;
 }
-
 function WebWorkflowSlide() {
   const steps=["Detect","Compare","Expert review","Assign","Verify","Report"];
   return <section data-background-gradient="linear-gradient(135deg,#07130e,#10281d)">
-    <div className="brand">Farm Marshal</div><div className="eyebrow">Web workflow</div>
-    <h1 className="small-title">From a visible problem to a verified result</h1>
-    <div className="web-evidence-grid">
-      <ProductVisual src={PRODUCT_IMAGES.webIncident} alt="Farm Marshal issue detection page" label="Issue detected · Zone B-14"/>
-      <ProductVisual src={PRODUCT_IMAGES.webEvidence} alt="Farm Marshal evidence and verification page" label="Evidence, experts, repair and verification"/>
+    <div className="brand">Farm Marshal</div><div className="eyebrow">Web workflow · Evidence to action</div>
+    <h1 className="small-title">From a discovered problem to a verified result</h1>
+    <div className="workflow-image-stage">
+      <ProductVisual src={PRODUCT_IMAGES.webIncident} alt="Detected irrigation issue in Field B Zone B-14" label="1 · Discovered problem and precise affected zone" className="workflow-image"/>
+      <div className="workflow-bridge"><b>One case</b><span>→</span><small>Complete chain of Fixing</small></div>
+      <ProductVisual src={PRODUCT_IMAGES.webEvidence} alt="Verification timeline with responsible people and evidence" label="2 · Verification timeline, evidence and responsible people" className="workflow-image"/>
     </div>
-    <div className="digital-flow">{steps.map((step,i)=><React.Fragment key={step}><div className="digital-step fragment fade-up" data-fragment-index={i}><b>{i+1}</b><span>{step}</span></div>{i<steps.length-1&&<i>→</i>}</React.Fragment>)}</div>
-    <div className="web-proof-strip"><span>GPS + time</span><span>Parallel expert recommendations</span><span>Before / after evidence</span><span>Owner approval</span></div>
+    <div className="digital-flow compact-flow workflow-sequence">{steps.map((step,i)=><React.Fragment key={step}><div className={`digital-step workflow-step workflow-step-${i+1}`}><b>{i+1}</b><span>{step}</span></div>{i<steps.length-1&&<i className={`workflow-arrow workflow-arrow-${i+1}`}>→</i>}</React.Fragment>)}</div>
   </section>;
 }
-
 function MobileConceptSlide() {
-  return <section data-background-gradient="linear-gradient(135deg,#051611,#0d3327)">
+  return <section className="mobile-merged-slide" data-background-gradient="linear-gradient(135deg,#051611,#0d3327)">
     <div className="brand">Farm Marshal</div><div className="eyebrow">Expected mobile experience</div>
-    <h1 className="small-title">The mobile concept connects platform control to field execution</h1>
-    <div className="mobile-concept-layout">
-      <ProductVisual src={PRODUCT_IMAGES.mobileHero} alt="Expected Farm Marshal mobile application concept" label="Expected mobile application · Illustrative concept" className="mobile-hero-visual"/>
-      <div className="mobile-number-grid">
-        <article><b>3</b><strong>User roles</strong><span>Owner · Expert · Field operator</span></article>
-        <article><b>6</b><strong>Core workflows</strong><span>Assign through verification</span></article>
-        <article><b>2</b><strong>Languages</strong><span>Arabic + English</span></article>
-        <article><b>1</b><strong>Evidence chain</strong><span>Person · Time · GPS · Task</span></article>
-      </div>
+    <h1 className="small-title">Connecting platform control to field execution</h1>
+    <div className="mobile-slide-label">Expected mobile application · Illustrative concept</div>
+    <div className="mobile-merged-visuals">
+      <ProductVisual src={PRODUCT_IMAGES.mobileHero} alt="Three-phone expected Farm Marshal mobile application concept" label="" className="mobile-wide-visual mobile-primary-visual mobile-clean-visual"/>
+      <ProductVisual src={PRODUCT_IMAGES.mobileArabic} alt="Arabic Farm Marshal field-operator mobile concept" label="" className="mobile-arabic-merged-visual mobile-arabic-clear-visual"/>
     </div>
-    <div className="concept-disclaimer">Illustrative product concept. Mobile interaction and synchronization performance will be validated during a field pilot.</div>
+    <div className="mobile-detail-strip mobile-detail-strip-large">
+      <article><b>3</b><strong>User roles</strong><span>Owner · Expert · Field operator</span></article>
+      <article><b>6</b><strong>Core actions</strong><span>Receive · Navigate · Capture · Execute · Submit · Verify</span></article>
+      <article><b>2</b><strong>Languages</strong><span>Arabic · English</span></article>
+    </div>
   </section>;
 }
-
 function MobileWorkflowSlide() {
   const actions=[
     ["1","Receive","Assigned task, farm, zone, priority and deadline"],
@@ -275,6 +339,28 @@ function MobileWorkflowSlide() {
       <ProductVisual src={PRODUCT_IMAGES.mobileArabic} alt="Arabic expected Farm Marshal mobile application" label="Arabic field-operator concept · RTL" className="mobile-arabic-visual"/>
     </div>
     <div className="pilot-targets"><strong>Pilot targets</strong><span>≤ 3 taps to start a task</span><span>100% required evidence before submission</span><span>Offline-first capture</span></div>
+  </section>;
+}
+
+function InitialUseCasesSlide() {
+  const cases=[
+    ["01","Reclamation at Scale","Inspect extensive areas, establish repeatable baselines, compare progress and direct field teams to priority GPS points."],
+    ["02","The Water Card","Detect abnormal irrigation zones, compare evidence and direct repairs before water loss becomes crop loss."],
+    ["03","Verified Field Execution","Turn agricultural recommendations into assigned, evidenced, verified and owner-visible field actions."],
+    ["04","Continuous Monitoring","Repeat missions, compare historical evidence, flag suspicious zones and trigger expert follow-up early."]
+  ];
+  const outcomes=[
+    "Earlier identification of operational problems",
+    "From Sky to Soil: Smarter Inspections",
+    "Every Task Seen. Every Result Verified.",
+    "See the Full Picture. Decide with Confidence.",
+    "Optimize Water and Inputs with Visual Intelligence"
+  ];
+  return <section className="use-cases-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+    <div className="brand">Farm Marshal</div><div className="eyebrow">Four use cases · Detailed next</div>
+    <h1 className="small-title">Focus on Visibility to Enable Precise Decisions</h1>
+    <div className="use-case-grid use-case-auto-grid use-case-grid-four">{cases.map(([no,title,text],i)=><article className={`use-case-card use-case-overview-card use-case-auto-card use-case-auto-card-${i+1}`} key={no}><span>{no}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+    <div className="outcome-band outcome-band-auto"><strong>Expected business outcomes</strong><div>{outcomes.map((x,i)=><span className={`outcome-pill outcome-pill-${i+1}`} key={x}>{x}</span>)}</div></div>
   </section>;
 }
 
@@ -320,7 +406,7 @@ function BusinessModelSlide() {
 function ClosingSlide() {
   return <section className="closing-slide" data-background-gradient="radial-gradient(circle at 50% 45%,#194a35,#07130e 62%)">
     <div className="brand">Farm Marshal</div>
-    <div className="closing-box fragment zoom-in">
+    <div className="closing-box closing-box-auto">
       <div className="closing-kicker">I do not expect a decision today. I expect a question.</div>
       <h1>What is the single biggest headache you face on your farms right now?</h1>
       <p>Let us start there, define the evidence, and build a measurable pilot around it.</p>
@@ -331,8 +417,8 @@ function ClosingSlide() {
 function App(){
  const deckElement=useRef(null), deck=useRef(null); const [ready,setReady]=useState(false);
  useEffect(()=>{ let active=true; (async()=>{ if(!deckElement.current||deck.current)return; deck.current=new Reveal(deckElement.current,{embedded:true,controls:true,progress:true,center:true,transition:"fade",backgroundTransition:"zoom",width:1600,height:900,margin:.045,hash:false}); await deck.current.initialize(); if(active)setReady(true); })(); return()=>{active=false; try{deck.current?.destroy();}catch{} deck.current=null;};},[]);
- return <main className="app"><nav><span className={ready?"status ready":"status"}/><button onClick={()=>deck.current?.slide(0)}>English</button><button onClick={()=>deck.current?.slide(16)}>العربية</button></nav>
-  <div className="reveal" ref={deckElement}><div className="slides"><StorySlide t={EN}/><ModelSlide t={EN}/><HubSlide t={EN}/><VisionSlide/><ProblemSlide/><ReclamationSlide/><WaterSlide/><TreatmentSlide/><MonitoringSlide/><WebPlatformSlide/><WebWorkflowSlide/><MobileConceptSlide/><MobileWorkflowSlide/><TrustSlide/><BusinessModelSlide/><ClosingSlide/><StorySlide t={AR} rtl/><ModelSlide t={AR} rtl/><HubSlide t={AR} rtl/></div></div>
+ return <main className="app"><nav><span className={ready?"status ready":"status"}/><button onClick={()=>deck.current?.slide(0)}>English</button><button onClick={()=>deck.current?.slide(19)}>العربية</button></nav>
+  <div className="reveal" ref={deckElement}><div className="slides"><StorySlide t={EN}/><TeamIntroductionSlide/><ProblemSlide/><ModelSlide t={EN}/><HubSlide t={EN}/><WebPlatformSlide/><WebWorkflowSlide/><MobileConceptSlide/><VisionSlide/><InitialUseCasesSlide/><ReclamationSlide/><WaterSlide/><TreatmentSlide/><MonitoringSlide/><ClosingSlide/><TrustSlide/><StorySlide t={AR} rtl/><ModelSlide t={AR} rtl/><HubSlide t={AR} rtl/></div></div>
  </main>;
 }
 
