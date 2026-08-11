@@ -464,3 +464,16 @@
     opacity:1;visibility:visible;transform:none;animation:none;
   }
 }
+/* v29 complete Arabic mirror for every English slide */
+.arabic-mirror-slide{direction:rtl;text-align:right;font-family:"Tahoma","Arial",sans-serif}
+.arabic-mirror-slide .brand,.arabic-mirror-slide .eyebrow,.arabic-mirror-slide h1,.arabic-mirror-slide h2,.arabic-mirror-slide h3,.arabic-mirror-slide p,.arabic-mirror-slide li,.arabic-mirror-slide span,.arabic-mirror-slide b,.arabic-mirror-slide strong,.arabic-mirror-slide small{text-align:right}
+.arabic-mirror-slide .closing-box,.arabic-mirror-slide .closing-box *,.arabic-mirror-slide .hub,.arabic-mirror-slide .hub *,.arabic-mirror-slide .orbit-card,.arabic-mirror-slide .orbit-card *,.arabic-mirror-slide .problem-bottomline-auto,.arabic-mirror-slide .team-market-line,.arabic-mirror-slide .value-strip span,.arabic-mirror-slide .mobile-detail-strip article,.arabic-mirror-slide .business-kicker{text-align:center}
+.arabic-mirror-slide .eyebrow{padding-right:72px;padding-left:0}
+.arabic-mirror-slide .eyebrow:before{right:0;left:auto}
+.arabic-mirror-slide ul{padding-right:1.1em;padding-left:0}
+.arabic-mirror-slide .team-card-head,.arabic-mirror-slide .agriculture-network{flex-direction:row-reverse}
+.arabic-mirror-slide .card-no{float:right;margin-left:18px;margin-right:0}
+.arabic-mirror-slide .workflow-bridge,.arabic-mirror-slide .digital-flow,.arabic-mirror-slide .treatment-flow{direction:rtl}
+.arabic-mirror-slide .mobile-detail-strip,.arabic-mirror-slide .portfolio-highlights,.arabic-mirror-slide .use-case-grid{direction:rtl}
+.arabic-mirror-slide h1{line-height:1.16}
+.arabic-mirror-slide .team-card li,.arabic-mirror-slide .pillar li{line-height:1.55}
