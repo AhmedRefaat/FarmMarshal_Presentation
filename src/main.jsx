@@ -104,45 +104,47 @@ function VisionSlide() {
 
 function TeamIntroductionSlide() {
   const members=[
-    {
-      initials:"AM",
-      name:"Ahmed Mohamed",
-      role:"BMW-Domain Project Manager",
-      highlights:["MBA in General Project Management","More than 15 years of professional experience","Multiple independent hobby projects"],
-      value:"Web app and mobile app, goal definition, delivery governance and business execution"
-    },
-    {
-      initials:"MZ",
-      name:"Muhammad Zainelddien",
-      role:"Manager at Apple",
-      highlights:["Management experience in a global technology environment","Operational and customer-focused perspective","Product and execution thinking"],
-      value:"Drone strategy, mission operations, equipment ecosystem and field-data acquisition"
-    },
-    {
-      initials:"HM",
-      name:"Hazem Mohy",
-      role:"Mechatronics Engineer",
-      highlights:["Strong practical engineering foundation","Machine learning and computer vision","Real-world systems and software integration"],
-      value:"Machine learning, computer vision, automation and software integration"
-    },
-    {
-      initials:"AH",
-      name:"Ahmed Hanfy, Ph.D.",
-      role:"Principal Semiconductor Engineer at Infineon",
-      highlights:["Ph.D. in Nanoelectronics, Technical University of Munich","Graduated summa cum laude","Molecular-device simulation, circuit modeling and semiconductor engineering"],
-      value:"China market analysis, market-entry strategy and business development"
-    }
+    {initials:"AM",name:"Ahmed Mohamed",role:"BMW-Domain Project Manager",highlights:["MBA in General Project Management","More than 15 years of professional experience","Multiple independent hobby projects"],value:"Web app and mobile app, goal definition, delivery governance and business execution"},
+    {initials:"MZ",name:"Muhammad Zainelddien",role:"Manager at Apple",highlights:["Management experience in a global technology environment","Operational and customer-focused perspective","Product and execution thinking"],value:"Drone strategy, mission operations, equipment ecosystem and field-data acquisition"},
+    {initials:"HM",name:"Hazem Mohy",role:"Mechatronics Engineer",highlights:["Strong practical engineering foundation","Machine learning and computer vision","Real-world systems and software integration"],value:"Machine learning, computer vision, automation and software integration"},
+    {initials:"AH",name:"Ahmed Hanfy, Ph.D.",role:"Principal Semiconductor Engineer at Infineon",highlights:["Ph.D. in Nanoelectronics, Technical University of Munich","Graduated summa cum laude","Molecular-device simulation, circuit modeling and semiconductor engineering"],value:"China market analysis, market-entry strategy and business development"}
   ];
-  return <section className="team-auto-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+  return <section className="team-auto-slide team-trading-slide team-trading-slide-v2" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
     <div className="brand">Farm Marshal</div>
     <div className="eyebrow">The core team and agricultural network</div>
     <h1 className="team-title">A broad capability set to build, operate and win the market</h1>
-    <p className="team-intro-lead">A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.</p>
-    <div className="team-grid team-grid-four">{members.map((member,i)=><article className={`team-card team-card-compact team-member-auto team-member-auto-${i+1}`} key={member.name}>
+    <p className="team-intro-lead">One team, four strengths: international business development, Drone operations, Artificial Intelligence, and Commercial Trading.</p>
+
+    <div className="team-grid team-grid-four team-primary-stage">{members.map((member,i)=><article className={`team-card team-card-compact team-member-auto team-member-auto-${i+1} team-person-${member.initials.toLowerCase()}`} key={member.name}>
       <div className="team-card-head"><span className="team-initials">{member.initials}</span><div><h3>{member.name}</h3><strong>{member.role}</strong></div></div>
       <ul>{member.highlights.map(item=><li key={item}>{item}</li>)}</ul>
       <div className="team-value"><small>Contribution to Farm Marshal</small><b>{member.value}</b></div>
     </article>)}</div>
+
+    {/* Compact clones begin over their original headers, then glide to the side rails. */}
+    <div className="team-compact-layer" aria-hidden="true">{members.map(member=><div className={`team-compact-person team-compact-${member.initials.toLowerCase()}`} key={`compact-${member.initials}`}>
+      <span>{member.initials}</span><b>{member.name}</b>
+    </div>)}</div>
+
+    {/* One Reveal fragment equals exactly one presenter click. */}
+    <span className="fragment team-transform-trigger" aria-hidden="true" />
+
+    <div className="team-history-panel" aria-label="Previous trading-company experience">
+      <div className="team-history-copy">
+        <span className="team-history-kicker">Previous experience</span>
+        <h2>Owns Oriel Company for Product Import &amp; Exports</h2>
+        <div className="team-history-between"><b>Between</b><span>Germany · Italy · Slovenia · Egypt · Syria</span></div>
+        <div className="team-history-focus">
+          <b>Focus</b>
+          <ul><li>Cars</li><li>Building Materials</li><li>Solar Systems</li><li>Food Goods <i>➡</i> <em>Trigger for <strong>Farm Marshal</strong></em></li></ul>
+        </div>
+      </div>
+      <div className="team-history-visual">
+        <div className="team-history-image-window"><img src={imagePath("oriel-company-reference.png")} alt="Oriel Company website homepage" /></div>
+        <a href="https://www.oriel-company.de/#home" target="_blank" rel="noreferrer">www.oriel-company.de/#home</a>
+      </div>
+    </div>
+
     <div className="agriculture-network agriculture-network-auto"><div className="network-icon">+A</div><div><strong>Agricultural Experts and Academic Partners</strong><span>Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.</span></div></div>
     <div className="team-bottomline team-market-line team-bottomline-auto"><b>One team, four core capabilities and Experts network:</b><span>Build the product</span><i>•</i><span>Operate the field-data ecosystem</span><i>•</i><span>Develop the intelligence</span><i>•</i><span>Enter, win and scale the market</span></div>
   </section>;
@@ -424,7 +426,7 @@ function ClosingSlide() {
 /* Complete one-to-one Arabic mirror of the English deck. */
 const AR_TRANSLATIONS = {
 "Farm Marshal":"فارم مارشال","The business promise":"وعد الأعمال","Visibility. Accountability. Resources Efficiency.":"الرؤية. المساءلة. كفاءة الموارد.","Data-as-a-Service for agricultural operations":"البيانات كخدمة للعمليات الزراعية","We do not sell drones. We provide trusted field evidence, expert supervision, and operational visibility across large agricultural estates.":"نحن لا نبيع الطائرات المسيّرة. نحن نوفر أدلة ميدانية موثوقة، وإشرافاً متخصصاً، ورؤية تشغيلية عبر المشاريع الزراعية الكبيرة.","Explore the entire farm":"استكشف المزرعة بالكامل","Verify field execution":"تحقق من التنفيذ الميداني","Smarter Water Use, Stronger Yields":"استخدام أذكى للمياه وإنتاجية أقوى","Detect disease risk early and act before it spreads":"اكتشف مخاطر الأمراض مبكراً وتصرف قبل انتشارها",
-"The core team and agricultural network":"الفريق الأساسي والشبكة الزراعية","A broad capability set to build, operate and win the market":"مجموعة واسعة من القدرات للبناء والتشغيل والنجاح في السوق","A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.":"فريق متكامل يجمع تطوير المنتج وتشغيل الطائرات المسيّرة والبرمجيات الذكية وهندسة أشباه الموصلات وتطوير الأعمال الدولية.","Contribution to Farm Marshal":"المساهمة في فارم مارشال","Agricultural Experts and Academic Partners":"خبراء زراعيون وشركاء أكاديميون","Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.":"يدعم متخصصو المحاصيل والري والبيوت المحمية تصميم التوصيات والتحقق الزراعي وبروتوكولات الفحص وتدريب نماذج التعلم الآلي والتحقق منها.","One team, four core capabilities and Experts network:":"فريق واحد، أربع قدرات أساسية وشبكة خبراء:","Build the product":"بناء المنتج","Operate the field-data ecosystem":"تشغيل منظومة البيانات الميدانية","Develop the intelligence":"تطوير الذكاء","Enter, win and scale the market":"دخول السوق والنجاح والتوسع",
+"The core team and agricultural network":"الفريق الأساسي والشبكة الزراعية","One team, four strengths: international business development, Drone operations, Artificial Intelligence, and Commercial Trading.":"فريق واحد بأربع نقاط قوة: تطوير الأعمال الدولية، وعمليات الطائرات المسيّرة، والذكاء الاصطناعي، والتجارة.","A broad capability set to build, operate and win the market":"مجموعة واسعة من القدرات للبناء والتشغيل والنجاح في السوق","A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.":"فريق متكامل يجمع تطوير المنتج وتشغيل الطائرات المسيّرة والبرمجيات الذكية وهندسة أشباه الموصلات وتطوير الأعمال الدولية.","Contribution to Farm Marshal":"المساهمة في فارم مارشال","Agricultural Experts and Academic Partners":"خبراء زراعيون وشركاء أكاديميون","Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.":"يدعم متخصصو المحاصيل والري والبيوت المحمية تصميم التوصيات والتحقق الزراعي وبروتوكولات الفحص وتدريب نماذج التعلم الآلي والتحقق منها.","One team, four core capabilities and Experts network:":"فريق واحد، أربع قدرات أساسية وشبكة خبراء:","Build the product":"بناء المنتج","Operate the field-data ecosystem":"تشغيل منظومة البيانات الميدانية","Develop the intelligence":"تطوير الذكاء","Enter, win and scale the market":"دخول السوق والنجاح والتوسع",
 "Why now":"لماذا الآن","The owner manages results, but cannot see the full operation":"المالك يدير النتائج، لكنه لا يرى العملية كاملة","Limited visibility":"رؤية محدودة","Remote owners cannot inspect every field, team, or work order.":"لا يستطيع المالكون عن بُعد فحص كل حقل أو فريق أو أمر عمل.","Hidden Water and Resource Loss":"فقدان خفي للمياه والموارد","Irrigation failures may remain invisible until crop damage appears.":"قد تبقى أعطال الري غير مرئية حتى يظهر الضرر على المحصول.","Execution risk":"مخاطر التنفيذ","Reports alone do not prove that the right work happened in the right area.":"التقارير وحدها لا تثبت أن العمل الصحيح نُفذ في المنطقة الصحيحة.","Disconnected Expertise":"خبرات غير مترابطة","Advice, evidence, field work, and follow-up are rarely connected.":"نادراً ما تكون المشورة والأدلة والعمل الميداني والمتابعة مترابطة.","The cost is not only labor. It is late discovery, wasted inputs, weak accountability, and lost yield.":"التكلفة ليست العمالة فقط، بل الاكتشاف المتأخر وهدر المدخلات وضعف المساءلة وفقدان الإنتاجية.",
 "One controlled service":"خدمة واحدة محكومة","The operating model":"نموذج التشغيل","Three pillars. One operating system.":"ثلاث ركائز. نظام تشغيل واحد.","Tech Team":"الفريق التقني","Agricultural Partners · Expertise Everywhere":"الشركاء الزراعيون · خبرة في كل مكان","Drone and Sensor Operations":"عمليات الطائرات المسيّرة والمستشعرات","Customer-friendly web and mobile platform":"منصة ويب وجوال سهلة للعملاء","Drone workflows, maps and data management":"مسارات عمل الطائرات والخرائط وإدارة البيانات","Machine learning, automation, alerts and reporting":"التعلم الآلي والأتمتة والتنبيهات والتقارير","Secure task tracking and expert marketplace":"تتبع آمن للمهام ومنصة للخبراء","Crop and greenhouse expertise":"خبرة في المحاصيل والبيوت المحمية","Pest, disease and irrigation guidance":"إرشادات الآفات والأمراض والري","Local treatments and agricultural validation":"معالجات محلية وتحقق زراعي","Standardized inspection protocols":"بروتوكولات فحص موحدة","Equipment, sensors and certified pilots":"معدات ومستشعرات وطيارون معتمدون","Flight missions and secure data capture":"مهام طيران وجمع آمن للبيانات","Data storage and archiving":"تخزين البيانات وأرشفتها","We connect technology, aerial visibility, local agricultural expertise, and field operations into one controlled service.":"نربط التقنية والرؤية الجوية والخبرة الزراعية المحلية والعمليات الميدانية في خدمة واحدة محكومة.",
 "Web application · Owner view":"تطبيق الويب · عرض المالك","One owner workspace for all farms and projects":"مساحة عمل واحدة للمالك لجميع المزارع والمشاريع","Wherever the owner is, the current status of every agricultural investment remains visible and actionable.":"أينما كان المالك، تبقى الحالة الحالية لكل استثمار زراعي واضحة وقابلة لاتخاذ الإجراء.","Your whole Land / Projects, in hand":"كل أراضيك ومشاريعك بين يديك","See every farm, greenhouse and reclamation project from one owner workspace.":"شاهد كل مزرعة وبيت محمي ومشروع استصلاح من مساحة عمل واحدة.","Know what needs attention now":"اعرف ما يحتاج إلى الاهتمام الآن","Active issues, project status and location are visible without travelling to the farm.":"المشكلات النشطة وحالة المشروع والموقع واضحة دون السفر إلى المزرعة.","Track performance, not reports":"تابع الأداء، لا التقارير فقط","Reported, active and solved issues show what happened, what remains open and what was closed.":"توضح المشكلات المبلغ عنها والنشطة والمحلولة ما حدث وما يزال مفتوحاً وما تم إغلاقه.","Operate in Arabic or English":"اعمل بالعربية أو الإنجليزية","A bilingual owner experience keeps the same portfolio and status available in either language.":"تجربة ثنائية اللغة تتيح نفس المحفظة والحالة بكلتا اللغتين.",

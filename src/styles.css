@@ -477,3 +477,173 @@
 .arabic-mirror-slide .mobile-detail-strip,.arabic-mirror-slide .portfolio-highlights,.arabic-mirror-slide .use-case-grid{direction:rtl}
 .arabic-mirror-slide h1{line-height:1.16}
 .arabic-mirror-slide .team-card li,.arabic-mirror-slide .pillar li{line-height:1.55}
+/* v30 team slide: one-click transition from full profiles to the Oriel origin story */
+.team-trading-slide .team-transform-trigger{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.team-trading-slide .team-history-panel{position:absolute;left:50%;top:53.5%;z-index:8;width:930px;height:388px;display:grid;grid-template-columns:1.08fr .92fr;gap:22px;padding:25px;border:1px solid rgba(228,184,92,.5);border-radius:24px;background:linear-gradient(150deg,rgba(18,55,40,.99),rgba(6,23,16,.99));box-shadow:0 25px 70px rgba(0,0,0,.48);opacity:0;visibility:hidden;transform:translate(-50%,-46%) scale(.94)}
+.team-history-copy{display:flex;flex-direction:column;justify-content:center;padding:8px 5px 8px 12px;text-align:left}.team-history-kicker{color:var(--gold);font-size:.24em;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.team-history-copy h2{margin:12px 0 17px;font-size:.49em;line-height:1.26}.team-history-columns{display:grid;gap:10px}.team-history-columns>div{display:grid;grid-template-columns:82px 1fr;gap:10px;padding:10px 12px;border:1px solid rgba(228,184,92,.18);border-radius:12px;background:rgba(228,184,92,.07)}.team-history-columns b{color:var(--gold);font-size:.23em}.team-history-columns span{font-size:.24em;line-height:1.4}.farm-marshal-trigger{margin-top:17px;font-size:.32em;font-weight:800}.farm-marshal-trigger strong{position:relative;color:#fff;white-space:nowrap}.farm-marshal-trigger strong:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#f0c65e,transparent);transform:scaleX(.08);opacity:.25;animation:farmMarshalUnderline 1.7s ease-in-out infinite}
+.team-history-visual{display:flex;min-width:0;flex-direction:column;justify-content:center}.team-history-visual img{display:block;width:100%;height:296px;object-fit:cover;object-position:center;border:1px solid rgba(255,255,255,.22);border-radius:16px;background:#fff;box-shadow:0 15px 35px rgba(0,0,0,.34);image-rendering:auto}.team-history-visual a{display:block;margin-top:11px;color:#f2cf77;font-size:.24em;text-align:center;text-decoration:none}.team-history-visual a:hover{text-decoration:underline}
+@keyframes farmMarshalUnderline{0%,100%{transform:scaleX(.08);opacity:.18}45%,60%{transform:scaleX(1);opacity:1}}
+
+/* Stop after the four large cards. The two lower boxes are intentionally hidden. */
+.reveal .slides section.present.team-trading-slide .agriculture-network-auto,.reveal .slides section.present.team-trading-slide .team-bottomline-auto{visibility:hidden;opacity:0;animation:none}
+
+/* One click: compact cards move to two balanced side columns. */
+.team-trading-slide:has(.team-transform-trigger.visible) .team-card{position:absolute;z-index:10;width:276px;min-height:0;height:62px;padding:8px 12px;border-radius:14px;opacity:1;visibility:visible;transition:left .72s cubic-bezier(.2,.8,.2,1),top .72s cubic-bezier(.2,.8,.2,1),width .72s,height .72s,padding .72s,transform .72s;animation:none!important}
+.team-trading-slide:has(.team-transform-trigger.visible) .team-card-head{height:100%;grid-template-columns:42px 1fr;gap:10px;padding:0;border:0}.team-trading-slide:has(.team-transform-trigger.visible) .team-initials{width:39px;height:39px;border-radius:11px;font-size:.22em}.team-trading-slide:has(.team-transform-trigger.visible) .team-card h3{margin:0;font-size:.28em;white-space:nowrap}.team-trading-slide:has(.team-transform-trigger.visible) .team-card-head strong,.team-trading-slide:has(.team-transform-trigger.visible) .team-card ul,.team-trading-slide:has(.team-transform-trigger.visible) .team-value{display:none}
+.team-trading-slide:has(.team-transform-trigger.visible) .team-person-am{left:33px;top:302px}.team-trading-slide:has(.team-transform-trigger.visible) .team-person-mz{left:33px;top:382px}.team-trading-slide:has(.team-transform-trigger.visible) .team-person-hm{left:1291px;top:302px}.team-trading-slide:has(.team-transform-trigger.visible) .team-person-ah{left:1291px;top:382px}
+.team-trading-slide:has(.team-transform-trigger.visible) .team-history-panel{visibility:visible;animation:teamHistoryReveal .72s cubic-bezier(.2,.8,.2,1) .45s both}
+@keyframes teamHistoryReveal{from{opacity:0;transform:translate(-50%,-46%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
+/* 3.5 seconds after the middle panel starts, reveal the two lower boxes in sequence. */
+.reveal .slides section.present.team-trading-slide:has(.team-transform-trigger.visible) .agriculture-network-auto{visibility:visible;animation:teamLowerReveal .55s ease-out 3.95s both}
+.reveal .slides section.present.team-trading-slide:has(.team-transform-trigger.visible) .team-bottomline-auto{visibility:visible;animation:teamLowerReveal .55s ease-out 4.6s both}
+@keyframes teamLowerReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1100px){.team-trading-slide .team-history-panel{width:820px;height:370px}.team-trading-slide:has(.team-transform-trigger.visible) .team-card{width:225px}.team-trading-slide:has(.team-transform-trigger.visible) .team-person-am,.team-trading-slide:has(.team-transform-trigger.visible) .team-person-mz{left:18px}.team-trading-slide:has(.team-transform-trigger.visible) .team-person-hm,.team-trading-slide:has(.team-transform-trigger.visible) .team-person-ah{left:1357px}.team-history-copy h2{font-size:.43em}}
+/* v31 precise replacement for the team trading-story slide. */
+.team-trading-slide-v2{position:relative}
+.team-trading-slide-v2 .team-transform-trigger{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+/* The compact clones initially sit exactly over the large-card headers. */
+.team-trading-slide-v2 .team-compact-layer{position:absolute;inset:0;z-index:14;pointer-events:none}
+.team-trading-slide-v2 .team-compact-person{position:absolute;top:316px;width:326px;height:64px;display:flex;align-items:center;gap:13px;padding:9px 13px;border:1px solid rgba(228,184,92,.48);border-radius:15px;background:linear-gradient(150deg,rgba(18,58,42,.99),rgba(7,27,19,.99));box-shadow:0 16px 35px rgba(0,0,0,.32);opacity:0;visibility:hidden;transform:scale(1.22);transition:left .9s cubic-bezier(.16,1,.3,1),top .9s cubic-bezier(.16,1,.3,1),width .9s cubic-bezier(.16,1,.3,1),height .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),opacity .28s ease}
+.team-trading-slide-v2 .team-compact-person span{display:grid;width:45px;height:45px;flex:0 0 45px;place-items:center;border:1px solid rgba(255,239,187,.72);border-radius:12px;background:linear-gradient(145deg,#e6c16f,#ad721e);color:#102017;font-size:.23em;font-weight:950}
+.team-trading-slide-v2 .team-compact-person b{font-size:.28em;white-space:nowrap}
+.team-trading-slide-v2 .team-compact-am{left:46px}.team-trading-slide-v2 .team-compact-mz{left:430px}.team-trading-slide-v2 .team-compact-hm{left:814px}.team-trading-slide-v2 .team-compact-ah{left:1198px}
+
+/* Smoothly dissolve and compress the original cards while the clones travel. */
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-primary-stage .team-card{transform:translateY(34px) scale(.72);transform-origin:center top;filter:blur(1px);opacity:0!important;visibility:visible!important;transition:transform .72s cubic-bezier(.4,0,.2,1),opacity .5s ease,filter .5s ease;animation:none!important}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-compact-person{opacity:1;visibility:visible;transform:scale(1)}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-compact-am{left:38px;top:326px;width:286px;height:64px}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-compact-mz{left:38px;top:410px;width:286px;height:64px}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-compact-hm{left:1276px;top:326px;width:286px;height:64px}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-compact-ah{left:1276px;top:410px;width:286px;height:64px}
+
+/* Central panel has a dedicated fixed stage and never participates in normal flow. */
+.team-trading-slide-v2 .team-history-panel{position:absolute;z-index:12;left:350px;right:350px;top:276px;width:auto;height:414px;display:grid;grid-template-columns:1.06fr .94fr;gap:25px;padding:24px 26px;border:1px solid rgba(228,184,92,.55);border-radius:24px;background:linear-gradient(150deg,rgba(18,55,40,.995),rgba(6,23,16,.995));box-shadow:0 25px 70px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(22px) scale(.97)}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-history-panel{visibility:visible;animation:teamHistoryRevealV2 .72s cubic-bezier(.16,1,.3,1) .48s both}
+@keyframes teamHistoryRevealV2{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.team-trading-slide-v2 .team-history-copy{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:3px 0;text-align:left}
+.team-trading-slide-v2 .team-history-kicker{color:var(--gold);font-size:.23em;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.team-trading-slide-v2 .team-history-copy h2{margin:10px 0 15px;font-size:.48em;line-height:1.22}
+.team-trading-slide-v2 .team-history-between{display:grid;grid-template-columns:82px 1fr;gap:10px;padding:10px 12px;border:1px solid rgba(228,184,92,.2);border-radius:12px;background:rgba(228,184,92,.07)}
+.team-trading-slide-v2 .team-history-between b,.team-trading-slide-v2 .team-history-focus>b{color:var(--gold);font-size:.23em}
+.team-trading-slide-v2 .team-history-between span{font-size:.23em;line-height:1.4}
+.team-trading-slide-v2 .team-history-focus{display:grid;grid-template-columns:82px 1fr;gap:10px;margin-top:10px;padding:11px 12px 12px;border:1px solid rgba(228,184,92,.24);border-radius:12px;background:rgba(228,184,92,.08)}
+.team-trading-slide-v2 .team-history-focus ul{display:grid;grid-template-columns:1fr;margin:0;padding:0;list-style:none}
+.team-trading-slide-v2 .team-history-focus li{margin:0;padding:2px 0;color:#fff;font-size:.23em;line-height:1.32}
+.team-trading-slide-v2 .team-history-focus li:before{content:"•";margin-right:8px;color:var(--gold)}
+.team-trading-slide-v2 .team-history-focus i{margin:0 7px;color:var(--gold);font-style:normal}
+.team-trading-slide-v2 .team-history-focus em{font-style:normal;font-weight:800;white-space:nowrap}
+.team-trading-slide-v2 .team-history-focus strong{position:relative;color:#fff;white-space:nowrap}
+.team-trading-slide-v2 .team-history-focus strong:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#f0c65e,transparent);transform:scaleX(.08);opacity:.2;animation:farmMarshalUnderlineV2 1.7s ease-in-out infinite}
+@keyframes farmMarshalUnderlineV2{0%,100%{transform:scaleX(.08);opacity:.18}45%,60%{transform:scaleX(1);opacity:1}}
+
+/* Left-anchored crop keeps the complete white website panel visible; only the far right may crop. */
+.team-trading-slide-v2 .team-history-visual{display:flex;min-width:0;flex-direction:column;justify-content:center}
+.team-trading-slide-v2 .team-history-image-window{width:100%;height:318px;overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:16px;background:#fff;box-shadow:0 15px 35px rgba(0,0,0,.34)}
+.team-trading-slide-v2 .team-history-image-window img{display:block;width:auto;height:100%;max-width:none;object-fit:unset;transform:none;image-rendering:auto}
+.team-trading-slide-v2 .team-history-visual a{display:block;margin-top:9px;color:#f2cf77;font-size:.23em;text-align:center;text-decoration:none}
+.team-trading-slide-v2 .team-history-visual a:hover{text-decoration:underline}
+
+/* Lower boxes own fixed non-overlapping rows below the panel. */
+.reveal .slides section.present.team-trading-slide-v2 .agriculture-network-auto,.reveal .slides section.present.team-trading-slide-v2 .team-bottomline-auto{position:absolute;z-index:13;left:38px;right:38px;width:auto;margin:0;visibility:hidden;opacity:0;animation:none}
+.reveal .slides section.present.team-trading-slide-v2 .agriculture-network-auto{top:708px;height:76px;padding:10px 15px}
+.reveal .slides section.present.team-trading-slide-v2 .team-bottomline-auto{top:802px;height:42px;padding:8px 14px}
+.reveal .slides section.present.team-trading-slide-v2:has(.team-transform-trigger.visible) .agriculture-network-auto{visibility:visible;animation:teamLowerRevealV2 .52s ease-out 4.0s both}
+.reveal .slides section.present.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-bottomline-auto{visibility:visible;animation:teamLowerRevealV2 .52s ease-out 4.65s both}
+@keyframes teamLowerRevealV2{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* Disable the obsolete v30 rules only on the v2 slide. */
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card{position:relative;left:auto;top:auto;width:auto;height:auto;padding:18px;border-radius:20px}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card-head{height:auto;grid-template-columns:54px 1fr;gap:11px;padding-bottom:13px;border-bottom:1px solid rgba(228,184,92,.22)}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card .team-initials{width:50px;height:50px;border-radius:15px;font-size:.29em}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card h3{margin-bottom:4px;font-size:.4em;white-space:normal}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card .team-card-head strong,.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card ul,.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-card .team-value{display:block}
+/* v32 team slide refinements: smoother travel, staged panel, presentation-readable text. */
+.team-trading-slide-v2 .team-compact-person{
+  transition:
+    left 1.25s cubic-bezier(.22,.72,.12,1),
+    top 1.25s cubic-bezier(.22,.72,.12,1),
+    width 1.25s cubic-bezier(.22,.72,.12,1),
+    height 1.25s cubic-bezier(.22,.72,.12,1),
+    transform 1.25s cubic-bezier(.22,.72,.12,1),
+    opacity .38s ease;
+  will-change:left,top,width,height,transform,opacity;
+}
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-primary-stage .team-card{
+  transform:translateY(28px) scale(.76);
+  filter:blur(.6px);
+  transition:
+    transform 1.02s cubic-bezier(.22,.72,.12,1),
+    opacity .82s ease,
+    filter .82s ease;
+}
+
+/* The experience panel starts only after the name cards finish their 1.25 s journey. */
+.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-history-panel{
+  animation:teamHistoryRevealV3 .72s cubic-bezier(.16,1,.3,1) 1.34s both;
+}
+@keyframes teamHistoryRevealV3{
+  from{opacity:0;transform:translateY(18px) scale(.975)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Increase only the text highlighted in the reference screenshot. */
+.team-trading-slide-v2 .team-history-between{
+  grid-template-columns:96px 1fr;
+  padding:13px 15px;
+}
+.team-trading-slide-v2 .team-history-between b{
+  font-size:.29em;
+  line-height:1.35;
+}
+.team-trading-slide-v2 .team-history-between span{
+  font-size:.29em;
+  font-weight:650;
+  line-height:1.42;
+}
+.team-trading-slide-v2 .team-history-focus{
+  grid-template-columns:96px 1fr;
+  padding:13px 15px 14px;
+}
+.team-trading-slide-v2 .team-history-focus>b{
+  font-size:.29em;
+  line-height:1.35;
+}
+.team-trading-slide-v2 .team-history-focus li{
+  padding:3px 0;
+  font-size:.285em;
+  font-weight:650;
+  line-height:1.34;
+}
+.team-trading-slide-v2 .team-history-focus li:before{margin-right:10px}
+.team-trading-slide-v2 .team-history-focus em{font-weight:900}
+
+.reveal .slides section.present.team-trading-slide-v2 .agriculture-network-auto strong{
+  font-size:.34em;
+  line-height:1.25;
+}
+.reveal .slides section.present.team-trading-slide-v2 .agriculture-network-auto span{
+  margin-top:6px;
+  font-size:.275em;
+  font-weight:560;
+  line-height:1.42;
+}
+.reveal .slides section.present.team-trading-slide-v2 .team-bottomline-auto{
+  gap:10px;
+  font-size:.275em;
+  font-weight:600;
+}
+.reveal .slides section.present.team-trading-slide-v2 .team-bottomline-auto b{
+  font-size:1.06em;
+  font-weight:900;
+}
+
+/* Preserve the requested 3.5 s pause after the delayed panel begins appearing. */
+.reveal .slides section.present.team-trading-slide-v2:has(.team-transform-trigger.visible) .agriculture-network-auto{
+  animation:teamLowerRevealV2 .52s ease-out 4.84s both;
+}
+.reveal .slides section.present.team-trading-slide-v2:has(.team-transform-trigger.visible) .team-bottomline-auto{
+  animation:teamLowerRevealV2 .52s ease-out 5.49s both;
+}
