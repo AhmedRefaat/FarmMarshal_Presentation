@@ -261,12 +261,31 @@ function MonitoringSlide() {
 }
 
 
+function DroneVideoSlide() {
+  return <section className="drone-video-slide" data-background-gradient="linear-gradient(135deg,#06110c,#102a1e)">
+    <div className="brand">Farm Marshal</div>
+    <div className="eyebrow">Continuous monitoring · Field demonstration</div>
+    <h1 className="small-title">See the drone mission in action</h1>
+    <p className="drone-video-lead">A practical view of aerial field coverage, repeatable observation and evidence collection.</p>
+    <div className="drone-video-frame">
+      <video className="drone-video-player" controls playsInline preload="metadata">
+        <source src={videoPath("Drone_vid.mp4")} type="video/mp4" />
+        Your browser does not support the video player.
+      </video>
+    </div>
+    <div className="drone-video-caption"><b>Drone field mission</b><span>Use the player controls to play, pause, change volume or enter full screen.</span></div>
+  </section>;
+}
+
+
 
 // Resolve public assets against Vite's configured base path.
 // This works locally and when GitHub Pages hosts the app under
 // /FarmMarshal_Presentation/ instead of at the domain root.
 const imagePath = (filename) =>
   `${import.meta.env.BASE_URL}images/${encodeURIComponent(filename)}`;
+const videoPath = (filename) =>
+  `${import.meta.env.BASE_URL}videos/${encodeURIComponent(filename)}`;
 
 const PRODUCT_IMAGES = {
   webPortfolio: imagePath("web-app-portfolio.png"),
@@ -426,7 +445,7 @@ function ClosingSlide() {
 /* Complete one-to-one Arabic mirror of the English deck. */
 const AR_TRANSLATIONS = {
 "Farm Marshal":"فارم مارشال","The business promise":"وعد الأعمال","Visibility. Accountability. Resources Efficiency.":"الرؤية. المساءلة. كفاءة الموارد.","Data-as-a-Service for agricultural operations":"البيانات كخدمة للعمليات الزراعية","We do not sell drones. We provide trusted field evidence, expert supervision, and operational visibility across large agricultural estates.":"نحن لا نبيع الطائرات المسيّرة. نحن نوفر أدلة ميدانية موثوقة، وإشرافاً متخصصاً، ورؤية تشغيلية عبر المشاريع الزراعية الكبيرة.","Explore the entire farm":"استكشف المزرعة بالكامل","Verify field execution":"تحقق من التنفيذ الميداني","Smarter Water Use, Stronger Yields":"استخدام أذكى للمياه وإنتاجية أقوى","Detect disease risk early and act before it spreads":"اكتشف مخاطر الأمراض مبكراً وتصرف قبل انتشارها",
-"The core team and agricultural network":"الفريق الأساسي والشبكة الزراعية","One team, four strengths: international business development, Drone operations, Artificial Intelligence, and Commercial Trading.":"فريق واحد بأربع نقاط قوة: تطوير الأعمال الدولية، وعمليات الطائرات المسيّرة، والذكاء الاصطناعي، والتجارة.","A broad capability set to build, operate and win the market":"مجموعة واسعة من القدرات للبناء والتشغيل والنجاح في السوق","A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.":"فريق متكامل يجمع تطوير المنتج وتشغيل الطائرات المسيّرة والبرمجيات الذكية وهندسة أشباه الموصلات وتطوير الأعمال الدولية.","Contribution to Farm Marshal":"المساهمة في فارم مارشال","Agricultural Experts and Academic Partners":"خبراء زراعيون وشركاء أكاديميون","Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.":"يدعم متخصصو المحاصيل والري والبيوت المحمية تصميم التوصيات والتحقق الزراعي وبروتوكولات الفحص وتدريب نماذج التعلم الآلي والتحقق منها.","One team, four core capabilities and Experts network:":"فريق واحد، أربع قدرات أساسية وشبكة خبراء:","Build the product":"بناء المنتج","Operate the field-data ecosystem":"تشغيل منظومة البيانات الميدانية","Develop the intelligence":"تطوير الذكاء","Enter, win and scale the market":"دخول السوق والنجاح والتوسع",
+"The core team and agricultural network":"الفريق الأساسي والشبكة الزراعية","One team, four strengths: international business development, Drone operations, Artificial Intelligence, and Commercial Trading.":"فريق واحد بأربع نقاط قوة: تطوير الأعمال الدولية، وعمليات الطائرات المسيّرة، والذكاء الاصطناعي، والتجارة.","A broad capability set to build, operate and win the market":"مجموعة واسعة من القدرات للبناء والتشغيل والنجاح في السوق","A complementary team combining product delivery, drone operations, intelligent software, semiconductor engineering and international business development.":"فريق متكامل يجمع تطوير المنتج وتشغيل الطائرات المسيّرة والبرمجيات الذكية وهندسة أشباه الموصلات وتطوير الأعمال الدولية.","Contribution to Farm Marshal":"المساهمة في فارم مارشال","Agricultural Experts and Academic Partners":"خبراء زراعيون وشركاء أكاديميون","Crop, irrigation and greenhouse specialists support recommendation design, agricultural validation, inspection protocols and the training and validation of machine-learning models.":"يدعم متخصصو المحاصيل والري والبيوت المحمية تصميم التوصيات والتحقق الزراعي وبروتوكولات الفحص وتدريب نماذج التعلم الآلي والتحقق منها.","One team, four core capabilities and Experts network:":"فريق واحد، أربع قدرات أساسية وشبكة خبراء:","Build the product":"بناء المنتج","Operate the field-data ecosystem":"تشغيل منظومة البيانات الميدانية","Develop the intelligence":"تطوير الذكاء","Enter, win and scale the market":"دخول السوق والنجاح والتوسع","Continuous monitoring · Field demonstration":"المراقبة المستمرة · عرض ميداني","See the drone mission in action":"شاهد مهمة الطائرة المسيّرة أثناء التنفيذ","A practical view of aerial field coverage, repeatable observation and evidence collection.":"عرض عملي للتغطية الجوية للحقول والمراقبة القابلة للتكرار وجمع الأدلة.","Your browser does not support the video player.":"متصفحك لا يدعم مشغل الفيديو.","Drone field mission":"مهمة ميدانية بالطائرة المسيّرة","Use the player controls to play, pause, change volume or enter full screen.":"استخدم عناصر التحكم للتشغيل أو الإيقاف المؤقت أو تغيير مستوى الصوت أو الدخول إلى وضع ملء الشاشة.",
 "Why now":"لماذا الآن","The owner manages results, but cannot see the full operation":"المالك يدير النتائج، لكنه لا يرى العملية كاملة","Limited visibility":"رؤية محدودة","Remote owners cannot inspect every field, team, or work order.":"لا يستطيع المالكون عن بُعد فحص كل حقل أو فريق أو أمر عمل.","Hidden Water and Resource Loss":"فقدان خفي للمياه والموارد","Irrigation failures may remain invisible until crop damage appears.":"قد تبقى أعطال الري غير مرئية حتى يظهر الضرر على المحصول.","Execution risk":"مخاطر التنفيذ","Reports alone do not prove that the right work happened in the right area.":"التقارير وحدها لا تثبت أن العمل الصحيح نُفذ في المنطقة الصحيحة.","Disconnected Expertise":"خبرات غير مترابطة","Advice, evidence, field work, and follow-up are rarely connected.":"نادراً ما تكون المشورة والأدلة والعمل الميداني والمتابعة مترابطة.","The cost is not only labor. It is late discovery, wasted inputs, weak accountability, and lost yield.":"التكلفة ليست العمالة فقط، بل الاكتشاف المتأخر وهدر المدخلات وضعف المساءلة وفقدان الإنتاجية.",
 "One controlled service":"خدمة واحدة محكومة","The operating model":"نموذج التشغيل","Three pillars. One operating system.":"ثلاث ركائز. نظام تشغيل واحد.","Tech Team":"الفريق التقني","Agricultural Partners · Expertise Everywhere":"الشركاء الزراعيون · خبرة في كل مكان","Drone and Sensor Operations":"عمليات الطائرات المسيّرة والمستشعرات","Customer-friendly web and mobile platform":"منصة ويب وجوال سهلة للعملاء","Drone workflows, maps and data management":"مسارات عمل الطائرات والخرائط وإدارة البيانات","Machine learning, automation, alerts and reporting":"التعلم الآلي والأتمتة والتنبيهات والتقارير","Secure task tracking and expert marketplace":"تتبع آمن للمهام ومنصة للخبراء","Crop and greenhouse expertise":"خبرة في المحاصيل والبيوت المحمية","Pest, disease and irrigation guidance":"إرشادات الآفات والأمراض والري","Local treatments and agricultural validation":"معالجات محلية وتحقق زراعي","Standardized inspection protocols":"بروتوكولات فحص موحدة","Equipment, sensors and certified pilots":"معدات ومستشعرات وطيارون معتمدون","Flight missions and secure data capture":"مهام طيران وجمع آمن للبيانات","Data storage and archiving":"تخزين البيانات وأرشفتها","We connect technology, aerial visibility, local agricultural expertise, and field operations into one controlled service.":"نربط التقنية والرؤية الجوية والخبرة الزراعية المحلية والعمليات الميدانية في خدمة واحدة محكومة.",
 "Web application · Owner view":"تطبيق الويب · عرض المالك","One owner workspace for all farms and projects":"مساحة عمل واحدة للمالك لجميع المزارع والمشاريع","Wherever the owner is, the current status of every agricultural investment remains visible and actionable.":"أينما كان المالك، تبقى الحالة الحالية لكل استثمار زراعي واضحة وقابلة لاتخاذ الإجراء.","Your whole Land / Projects, in hand":"كل أراضيك ومشاريعك بين يديك","See every farm, greenhouse and reclamation project from one owner workspace.":"شاهد كل مزرعة وبيت محمي ومشروع استصلاح من مساحة عمل واحدة.","Know what needs attention now":"اعرف ما يحتاج إلى الاهتمام الآن","Active issues, project status and location are visible without travelling to the farm.":"المشكلات النشطة وحالة المشروع والموقع واضحة دون السفر إلى المزرعة.","Track performance, not reports":"تابع الأداء، لا التقارير فقط","Reported, active and solved issues show what happened, what remains open and what was closed.":"توضح المشكلات المبلغ عنها والنشطة والمحلولة ما حدث وما يزال مفتوحاً وما تم إغلاقه.","Operate in Arabic or English":"اعمل بالعربية أو الإنجليزية","A bilingual owner experience keeps the same portfolio and status available in either language.":"تجربة ثنائية اللغة تتيح نفس المحفظة والحالة بكلتا اللغتين.",
@@ -461,14 +480,33 @@ function translateArabicTree(node,isRoot=false){
 }
 function ArabicMirror({render}){ return translateArabicTree(render(),true); }
 const ARABIC_MIRRORS=[
-  ()=>StorySlide({t:EN}),TeamIntroductionSlide,ProblemSlide,()=>ModelSlide({t:EN}),()=>HubSlide({t:EN}),WebPlatformSlide,WebWorkflowSlide,MobileConceptSlide,VisionSlide,InitialUseCasesSlide,ReclamationSlide,WaterSlide,TreatmentSlide,MonitoringSlide,ClosingSlide,TrustSlide
+  ()=>StorySlide({t:EN}),TeamIntroductionSlide,ProblemSlide,()=>ModelSlide({t:EN}),()=>HubSlide({t:EN}),WebPlatformSlide,WebWorkflowSlide,MobileConceptSlide,VisionSlide,InitialUseCasesSlide,ReclamationSlide,WaterSlide,TreatmentSlide,MonitoringSlide,DroneVideoSlide,ClosingSlide,TrustSlide
 ];
 
 function App(){
  const deckElement=useRef(null), deck=useRef(null); const [ready,setReady]=useState(false);
- useEffect(()=>{ let active=true; (async()=>{ if(!deckElement.current||deck.current)return; deck.current=new Reveal(deckElement.current,{embedded:true,controls:true,progress:true,center:true,transition:"fade",backgroundTransition:"zoom",width:1600,height:900,margin:.045,hash:false}); await deck.current.initialize(); if(active)setReady(true); })(); return()=>{active=false; try{deck.current?.destroy();}catch{} deck.current=null;};},[]);
- return <main className="app"><nav><span className={ready?"status ready":"status"}/><button onClick={()=>deck.current?.slide(0)}>English</button><button onClick={()=>deck.current?.slide(16)}>العربية</button></nav>
-  <div className="reveal" ref={deckElement}><div className="slides"><StorySlide t={EN}/><TeamIntroductionSlide/><ProblemSlide/><ModelSlide t={EN}/><HubSlide t={EN}/><WebPlatformSlide/><WebWorkflowSlide/><MobileConceptSlide/><VisionSlide/><InitialUseCasesSlide/><ReclamationSlide/><WaterSlide/><TreatmentSlide/><MonitoringSlide/><ClosingSlide/><TrustSlide/>{ARABIC_MIRRORS.map((render,i)=><ArabicMirror key={`ar-${i}`} render={render}/>)}</div></div>
+ useEffect(()=>{
+  let active=true;
+  const pauseHiddenVideos=event=>{
+    document.querySelectorAll(".reveal video").forEach(video=>{
+      if(!event?.currentSlide?.contains(video)) video.pause();
+    });
+  };
+  (async()=>{
+    if(!deckElement.current||deck.current)return;
+    deck.current=new Reveal(deckElement.current,{embedded:true,controls:true,progress:true,center:true,transition:"fade",backgroundTransition:"zoom",width:1600,height:900,margin:.045,hash:false});
+    await deck.current.initialize();
+    deck.current.on("slidechanged",pauseHiddenVideos);
+    if(active)setReady(true);
+  })();
+  return()=>{
+    active=false;
+    try{deck.current?.off("slidechanged",pauseHiddenVideos); deck.current?.destroy();}catch{}
+    deck.current=null;
+  };
+ },[]);
+ return <main className="app"><nav><span className={ready?"status ready":"status"}/><button onClick={()=>deck.current?.slide(0)}>English</button><button onClick={()=>deck.current?.slide(17)}>العربية</button></nav>
+  <div className="reveal" ref={deckElement}><div className="slides"><StorySlide t={EN}/><TeamIntroductionSlide/><ProblemSlide/><ModelSlide t={EN}/><HubSlide t={EN}/><WebPlatformSlide/><WebWorkflowSlide/><MobileConceptSlide/><VisionSlide/><InitialUseCasesSlide/><ReclamationSlide/><WaterSlide/><TreatmentSlide/><MonitoringSlide/><DroneVideoSlide/><ClosingSlide/><TrustSlide/>{ARABIC_MIRRORS.map((render,i)=><ArabicMirror key={`ar-${i}`} render={render}/>)}</div></div>
  </main>;
 }
 
